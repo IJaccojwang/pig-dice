@@ -1,6 +1,6 @@
 //Business Logic
 var players = ["p1", "p2"];
-var currentPlayer = "";
+var currentPlayer = "p1";
 var i = 0;
 var thisRound = [];
 var roundScorep1 = 0;
@@ -13,73 +13,94 @@ function roll() {
   landsOn = Math.floor(Math.random() *6) + 1;
 };
 
-function current() {
-    if (i === 0) {
-      i = i + 1;
-    }
-    else if (i === 1) {
-      i = i - 1;
-    }
-    currentPlayer = players[i];
+
+function turn() {
+  if (i == 0) {
+    i = i + 1;
+  } else {
+    i = i - 1;
+  }
+  thisRound = [0];
+  currentPlayer = players[i];
 };
 
 function sum() {
-  if (players[0]) {
+  if (currentPlayer == "p1") {
     roundScorep1 = thisRound.reduce((sum, num) => sum + num);
   } else {
     roundScorep2 = thisRound.reduce((sum, num) => sum + num);
   }
-}
+};
+
 function round() {
   if(landsOn !== 1) {
     thisRound.push(landsOn);
     sum();
   }
   else{
-    thisRound = [0];
+    $("#oops-" + currentPlayer).show();
+    $("#oops-" + currentPlayer).hide();
+    turn();
     sum();
-    current();
   }
 };
 
 function game() {
-  if (currentPlayer = "p1") {
+  if (currentPlayer == "p1") {
     gameScorep1 += roundScorep1;
   }
-  else {
+  else if (currentPlayer = "p2") {
     gameScorep2 += roundScorep2;
   }
+  else {
+    alert("Please restart");
+  }
+};
+
+function roundReset() {
+  $("#p1round").text("Round: 0");
+  $("#p2round").text("Round: 0");
+  $("#p1roll").text("This roll: 0");
+  $("#p2roll").text("This roll: 0");
 }
 
+function gameReset() {
 
+}
 
 
 //User Interface Logic
 $(document).ready(function() {
   $("#roll").click(function() {
-    alert(currentPlayer);
     roll();
-    if (currentPlayer = "p1") {
-      $("#p1roll").text("This roll: " + landsOn);
-    } else {
-      $("#p2roll").text("This roll: " + landsOn);
-    }
+    $(".dice").append("<img src='img/dice3.png' alt='dice'>");
+    $("#lands").text(landsOn);
+    // if (currentPlayer == "p1") {
+    //   $("#p1roll").text("This roll: " + landsOn);
+    // } else {
+    //   $("#p2roll").text("This roll: " + landsOn);
+    // }
     round();
     $("#p1round").text("Round: " + roundScorep1);
     $("#p2round").text("Round: " + roundScorep2);
   });
 
   $("#hold").click(function() {
-    current();
     game();
-    $("#p1game").text("Game: " + gameScorep1);
-    $("#p2game").text("Game: " + gameScorep2);
+    $("#p1game").text(gameScorep1);
+    $("#p2game").text(gameScorep2);
     if (gameScorep1 >= 100 || gameScorep2 >=100) {
       alert(currentPlayer + "wins");
+      // $(this).prop("diabled", true);
+      // $("#roll").prop("diabled", true);
     }
     else {
-      alert("passed")
-      current();
+      turn();
     }
+    roundReset();
+  });
+
+  $("#rules").click(function() {
+    $(".drop").toggle();
   });
 });
