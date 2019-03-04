@@ -38,9 +38,9 @@ function round() {
     sum();
   }
   else{
-    $("#oops-" + currentPlayer).show();
-    $("#oops-" + currentPlayer).hide();
+    $('#oops-' + currentPlayer).show();
     turn();
+    background();
     sum();
   }
 };
@@ -68,12 +68,22 @@ function gameReset() {
 
 }
 
+function background() {
+  if (currentPlayer == "p2") {
+    $("#player1").css("background-color", "rgba(0, 0, 0, 0.5)");
+    $("#player2").css("background-color", "rgba(255, 255, 255, 0.8)")
+  } else {
+    $("#player2").css("background-color", "rgba(0, 0, 0, 0.5)");
+    $("#player1").css("background-color", "rgba(255, 255, 255, 0.8)")
+  }
+}
+
 
 //User Interface Logic
 $(document).ready(function() {
   $("#roll").click(function() {
     roll();
-    $(".dice").append("<img src='img/dice3.png' alt='dice'>");
+    $(".dice").empty().append("<img src='img/dice"+ landsOn + ".png' alt='dice' width='100%'>");
     $("#lands").text(landsOn);
     // if (currentPlayer == "p1") {
     //   $("#p1roll").text("This roll: " + landsOn);
@@ -96,6 +106,7 @@ $(document).ready(function() {
     }
     else {
       turn();
+      background();
     }
     roundReset();
   });
