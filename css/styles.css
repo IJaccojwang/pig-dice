@@ -17,9 +17,10 @@ ul{
 }
 #oops-p1, #oops-p2{
   display: none;
+  color: red;
 }
 #lands{
-  font-size: 500%;
+  font-size: 300%;
   text-align: center;
 }
 #rules{
@@ -28,4 +29,10 @@ ul{
 }
 .drop{
   display: none;
+}
+#p1round, #p1game, #p2round, #p2game{
+  font-size: 300%;
+}
+#active{
+  background-color: rgba(0, 0, 0, 0.5);
 }
