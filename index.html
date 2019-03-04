@@ -5,30 +5,51 @@
     <title>Pig Dice</title>
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Acme" rel="stylesheet">
   </head>
   <body>
-    <div class="container">
-      <div class="header">
-        <h1>Welcome to Pig Dice</h1>
-      </div>
+    <div class="container-fluid">
+      <div class="card header" id="card">
+        <h1 class="display-4">PIG DICE</h1>
+        <hr class="my-8">
+        <button type="button" name="button" id="rules" class="btn btn-primary">Rules</button>
+        <div class="drop">
+          <p>Only three <strong>Rules:</strong></p>
+          <ul>
+            <li>If the player rolls a 1, they score nothing and it becomes the next player's turn.</li>
+            <li>If the player rolls any other number, it is added to their turn total and the player's turn continues.</li>
+            <li>If a player chooses to "hold", their turn total is added to their score, and it becomes the next player's turn.</li>
+          </ul>
+          <p>The first player to score 100 or more points wins. Roll the dice and start playing!</p>
+        </div>
+    </div>
       <div class="row">
-        <div class="col-md-6 col-sm-6">
+        <div class="col-md-5 col-sm-5">
           <div class="card">
             <h1>Player 1</h1>
-            <h3>Current Score</h3>
-            <p id="p1score">0</p>
+            <p id="oops-p1">Oops, you rolled a 1</p>
+            <p id="p1game">0</p>
+            <p id="p1round">Round: 0</p>
+            <p id="p1roll">This roll: 0</p>
           </div>
         </div>
-        <div class="col-md-6 col-sm-6">
+        <div class="col-md-2 col-sm-2">
+          <div class="card">
+            <div class="dice"></div>
+            <p id="lands">0</p>
+            <button type="button" name="button" id="roll" class="btn btn-primary btn-block">Roll</button>
+            <button type="button" name="button" id="hold" class="btn btn-primary btn-block">Hold</button>
+          </div>
+        </div>
+        <div class="col-md-5 col-sm-5">
           <div class="card">
             <h1>Player 2</h1>
-            <h3>Current Score</h3>
-            <p id="p2score">0</p>
+            <p id="oops-p2">Oops, you rolled a 1</p>
+            <p id="p2game">0</p>
+            <p id="p2round">Round: 0</p>
+            <p id="p2roll">This roll: 0</p>
           </div>
         </div>
-      </div>
-      <div class="footer">
-        <button type="button" name="button" id="roll" class="btn btn-primary btn-block">Roll</button>
       </div>
     </div>
     <script type="text/javascript" src="js/jquery-3.3.1.js"></script>
