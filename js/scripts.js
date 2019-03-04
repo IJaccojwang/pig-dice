@@ -10,15 +10,19 @@ var gameScorep2 = 0;
 var landsOn = 0;
 
 
-//Constructor
 
-//Prototype
+function Player(first, last) {
+  this.firstName = first;
+  this.lastName = last;
+};
 
+Player.prototype.fullName = function() {
+  return this.firstName + " " + this.lastName;
+};
 
 function roll() {
   landsOn = Math.floor(Math.random() *6) + 1;
 };
-
 
 function turn() {
   if (i == 0) {
@@ -44,11 +48,10 @@ function round() {
     sum();
   }
   else{
-    $('#oops-' + currentPlayer).show();
+    sum();
     turn();
     background();
     roundReset();
-    sum();
   }
 };
 
@@ -56,12 +59,14 @@ function game() {
   if (currentPlayer == "p1") {
     gameScorep1 += roundScorep1;
   }
-  else if (currentPlayer = "p2") {
+  else if (currentPlayer == "p2") {
     gameScorep2 += roundScorep2;
   }
   else {
     alert("Please restart");
   }
+  roundScorep1 = 0;
+  roundScorep2 = 0;
 };
 
 function roundReset() {
@@ -98,12 +103,21 @@ $(document).ready(function() {
   $("#restart").click(function() {
     gameReset();
   });
-
   $("#num1").submit(function(event) {
     event.preventDefault();
-    fname1 = $("#fname1").val();
-    lname1 = $("#lname1").val();
-  })
+    var fname1 = $("#fname1").val();
+    var lname1 = $("#lname1").val();
+    var playerOne = new Player(fname1, lname1);
+    $("#one").text(playerOne.fullName());
+  });
+
+  $("#num2").submit(function(event) {
+    event.preventDefault();
+    var fname2 = $("#fname2").val();
+    var lname2 = $("#lname2").val();
+    var playerTwo = new Player(fname2, lname2);
+    $("#two").text(playerTwo.fullName());
+  });
 
   $("#roll").click(function() {
     roll();
@@ -112,6 +126,7 @@ $(document).ready(function() {
     round();
     $("#p1round").text("Round: " + roundScorep1);
     $("#p2round").text("Round: " + roundScorep2);
+    $("#hold").attr("disabled", false);
   });
 
   $("#hold").click(function() {
@@ -129,6 +144,7 @@ $(document).ready(function() {
       background();
     }
     roundReset();
+    $("#hold").attr("disabled", true);
   });
 
   $("#rules").click(function() {

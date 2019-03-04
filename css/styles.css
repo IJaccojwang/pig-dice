@@ -36,3 +36,26 @@ ul{
 #active{
   background-color: rgba(0, 0, 0, 0.5);
 }
+#game{
+  display: none;
+}
+form{
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  margin-top: 5px;
+}
+h2{
+text-align: center;
+}
+#play, #save1, #save2{
+  margin-top: 10px;
+  width: 30%;
+  margin-left: 35%;
+}
+.over img{
+  width: 20%;
+  margin-left: 40%;
+}
+#winnerp1, #winnerp2{
+  color: red;
+}
