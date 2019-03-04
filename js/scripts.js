@@ -52,6 +52,7 @@ function round() {
     turn();
     background();
     roundReset();
+
   }
 };
 
@@ -85,10 +86,10 @@ function gameReset() {
 function background() {
   if (currentPlayer == "p2") {
     $("#player1").css("background-color", "rgba(0, 0, 0, 0.5)");
-    $("#player2").css("background-color", "rgba(255, 255, 255, 0.8)")
+    $("#player2").css("background-color", "rgba(255, 255, 255, 0.8)");
   } else {
     $("#player2").css("background-color", "rgba(0, 0, 0, 0.5)");
-    $("#player1").css("background-color", "rgba(255, 255, 255, 0.8)")
+    $("#player1").css("background-color", "rgba(255, 255, 255, 0.8)");
   }
 }
 
