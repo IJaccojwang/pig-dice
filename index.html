@@ -23,9 +23,45 @@
           <p>The first player to score 100 or more points wins. Roll the dice and start playing!</p>
         </div>
     </div>
+      <div class="row" id="intro">
+        <div class="col-md-5">
+          <form id="num1">
+            <h2>Player 1</h2>
+            <div class="row">
+              <div class="col">
+                <input id="fname1" type="text" class="form-control" placeholder="First name">
+              </div>
+              <div class="col">
+                <input id="lname1" type="text" class="form-control" placeholder="Last name">
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary" id="save1">Save</button>
+          </form>
+        </div>
+        <div class="col-md-2">
+              <button type="submit" class="btn btn-primary" id="play">Play</button>
+        </div>
+        <div class="col-md-5">
+          <form id="num2">
+            <h2>Player 2</h2>
+            <div class="row">
+              <div class="col">
+                <input id="fname2" type="text" class="form-control" placeholder="First name">
+              </div>
+              <div class="col">
+                <input id="lname2" type="text" class="form-control" placeholder="Last name">
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary" id="save2">Save</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid" id="game">
       <div class="row">
         <div class="col-md-5 col-sm-5">
           <div class="card" id="player1">
+            <h1 id="winnerp1"></h1>
             <h1>Player 1</h1>
             <p id="oops-p1">Oops, you rolled a 1. Next player.</p>
             <p id="p1game">0</p>
@@ -38,10 +74,12 @@
             <p id="lands">0</p>
             <button type="button" name="button" id="roll" class="btn btn-primary btn-block">Roll</button>
             <button type="button" name="button" id="hold" class="btn btn-primary btn-block">Hold</button>
+            <button type="button" name="button" id="restart" class="btn btn-primary btn-block">Restart</button>
           </div>
         </div>
         <div class="col-md-5 col-sm-5">
           <div class="card" id="player2">
+            <h1 id="winnerp2"></h1>
             <h1>Player 2</h1>
             <p id="oops-p2">Oops, you rolled a 1. Next Player</p>
             <p id="p2game">0</p>
