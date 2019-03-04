@@ -9,6 +9,12 @@ var gameScorep1 = 0;
 var gameScorep2 = 0;
 var landsOn = 0;
 
+
+//Constructor
+
+//Prototype
+
+
 function roll() {
   landsOn = Math.floor(Math.random() *6) + 1;
 };
@@ -41,6 +47,7 @@ function round() {
     $('#oops-' + currentPlayer).show();
     turn();
     background();
+    roundReset();
     sum();
   }
 };
@@ -62,10 +69,12 @@ function roundReset() {
   $("#p2round").text("Round: 0");
   $("#p1roll").text("This roll: 0");
   $("#p2roll").text("This roll: 0");
+  $('#oops-p1').hide();
+  $('#oops-p2').hide();
 }
 
 function gameReset() {
-
+  location.reload(true);
 }
 
 function background() {
@@ -81,15 +90,25 @@ function background() {
 
 //User Interface Logic
 $(document).ready(function() {
+  $("#play").click(function(event) {
+    $("#intro").hide();
+    $("#game").show();
+  });
+
+  $("#restart").click(function() {
+    gameReset();
+  });
+
+  $("#num1").submit(function(event) {
+    event.preventDefault();
+    fname1 = $("#fname1").val();
+    lname1 = $("#lname1").val();
+  })
+
   $("#roll").click(function() {
     roll();
     $(".dice").empty().append("<img src='img/dice"+ landsOn + ".png' alt='dice' width='100%'>");
     $("#lands").text(landsOn);
-    // if (currentPlayer == "p1") {
-    //   $("#p1roll").text("This roll: " + landsOn);
-    // } else {
-    //   $("#p2roll").text("This roll: " + landsOn);
-    // }
     round();
     $("#p1round").text("Round: " + roundScorep1);
     $("#p2round").text("Round: " + roundScorep2);
@@ -100,9 +119,10 @@ $(document).ready(function() {
     $("#p1game").text(gameScorep1);
     $("#p2game").text(gameScorep2);
     if (gameScorep1 >= 100 || gameScorep2 >=100) {
-      alert(currentPlayer + "wins");
-      // $(this).prop("diabled", true);
-      // $("#roll").prop("diabled", true);
+      $("#winner" + currentPlayer).text("WINNER!");
+      $("#roll").attr("disabled", true);
+      $("#hold").attr("disabled", true);
+      $(".dice").empty().append("<img src='img/over.gif' width='100%'>");
     }
     else {
       turn();
