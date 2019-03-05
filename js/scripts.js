@@ -52,7 +52,6 @@ function round() {
     turn();
     background();
     roundReset();
-
   }
 };
 
@@ -94,13 +93,12 @@ function background() {
 }
 
 
+
+
 //User Interface Logic
 $(document).ready(function() {
-  $("#play").click(function(event) {
-    $("#intro").hide();
-    $("#game").show();
-  });
-
+  $("#play").attr("disabled", true);
+  $("#save2").attr("disabled", true);
   $("#restart").click(function() {
     gameReset();
   });
@@ -110,6 +108,12 @@ $(document).ready(function() {
     var lname1 = $("#lname1").val();
     var playerOne = new Player(fname1, lname1);
     $("#one").text(playerOne.fullName());
+    if (fname1 == "" || lname1 == "") {
+      alert("Please enter both names");
+    }
+    else{
+      $("#save2").attr("disabled", false);
+    }
   });
 
   $("#num2").submit(function(event) {
@@ -118,6 +122,17 @@ $(document).ready(function() {
     var lname2 = $("#lname2").val();
     var playerTwo = new Player(fname2, lname2);
     $("#two").text(playerTwo.fullName());
+    if (fname2 == "" || lname2 == "") {
+      alert("Please enter both names");
+    }
+    else{
+      $("#play").attr("disabled", false);
+    }
+  });
+
+  $("#play").click(function() {
+      $("#intro").hide();
+      $("#game").show();
   });
 
   $("#roll").click(function() {
