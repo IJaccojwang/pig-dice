@@ -7,8 +7,6 @@ The users load the website and get instructions on how to play the game. They en
 * Go to the deployed site on: https://ijaccojwang.github.io/pig-dice/
 * Play either as single user(against computer) or as two players(against a friend)
 * Roll the dice and have fun!
-## Future Improvemnts
-I would li
 ## Technologies Used
 This project was coded in:
 * Html
